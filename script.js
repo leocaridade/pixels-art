@@ -46,9 +46,23 @@ const colorDiv = () => {
   }
 };
 
+const randomColorsBtn = () => {
+  const section = document.getElementById('color-palette');
+  const button = document.createElement('button');
+  button.id = 'button-random-color';
+  button.innerHTML = 'Cores aleatórias';
+  section.appendChild(button);
+};
+const clickBtn = () => {
+  const button = document.getElementById('button-random-color');
+  button.addEventListener('click', colorDiv);
+};
+
 window.onload = () => {
   createTitle();
   createSection();
   createDiv();
   colorDiv();
+  randomColorsBtn();
+  clickBtn();
 };
