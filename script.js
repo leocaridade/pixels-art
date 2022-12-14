@@ -11,6 +11,7 @@ const createSection = () => {
   const section = document.createElement('section');
   section.id = 'color-palette';
   section.style.display = 'flex';
+  section.style.gap = '16px';
   body.appendChild(section);
 };
 
@@ -20,10 +21,18 @@ const createDiv = () => {
     const div = document.createElement('div');
     div.className = 'color';
     div.style.border = 'solid 1px black';
-    div.style.width = '20px';
-    div.style.height = '20px';
+    div.style.width = '30px';
+    div.style.height = '30px';
     section.appendChild(div);
   }
+};
+
+const generateColor = () => {
+  const r = Math.floor(Math.random() * 255);
+  const g = Math.floor(Math.random() * 255);
+  const b = Math.floor(Math.random() * 255);
+
+  return `rgb(${r}, ${g}, ${b})`;
 };
 
 const colorDiv = () => {
@@ -31,12 +40,8 @@ const colorDiv = () => {
   for (let index = 0; index < div.length; index += 1) {
     if (index === 0) {
       div[index].style.backgroundColor = 'black';
-    } else if (index === 1) {
-      div[index].style.backgroundColor = 'green';
-    } else if (index === 2) {
-      div[index].style.backgroundColor = 'red';
-    } else if (index === 3) {
-      div[index].style.backgroundColor = 'blue';
+    } else {
+      div[index].style.backgroundColor = generateColor();
     }
   }
 };
