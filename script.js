@@ -35,6 +35,17 @@ const generateColor = () => {
   return `rgb(${r}, ${g}, ${b})`;
 };
 
+const saveColors = () => {
+  const colors = document.getElementsByClassName('color');
+  const savedColors = [];
+
+  for (let index = 0; index < colors.length; index += 1) {
+    savedColors.push(colors[index].style.backgroundColor);
+  }
+
+  localStorage.setItem('colorPalette', JSON.stringify(savedColors));
+};
+
 const colorDiv = () => {
   const div = document.getElementsByClassName('color');
   for (let index = 0; index < div.length; index += 1) {
@@ -44,15 +55,25 @@ const colorDiv = () => {
       div[index].style.backgroundColor = generateColor();
     }
   }
+  saveColors();
+};
+
+const colorDivStorage = () => {
+  const div = document.getElementsByClassName('color');
+  const getLocalStorage = JSON.parse(localStorage.getItem('colorPalette'));
+  for (let index = 0; index < div.length; index += 1) {
+    div[index].style.backgroundColor = getLocalStorage[index];
+  }
 };
 
 const randomColorsBtn = () => {
-  const section = document.getElementById('color-palette');
+  const section = document.querySelector('#color-palette');
   const button = document.createElement('button');
   button.id = 'button-random-color';
   button.innerHTML = 'Cores aleatórias';
   section.appendChild(button);
 };
+
 const clickBtn = () => {
   const button = document.getElementById('button-random-color');
   button.addEventListener('click', colorDiv);
@@ -62,7 +83,11 @@ window.onload = () => {
   createTitle();
   createSection();
   createDiv();
-  colorDiv();
+  if (localStorage.getItem('colorPalette') === null) {
+    colorDiv();
+  } else {
+    colorDivStorage();
+  }
   randomColorsBtn();
   clickBtn();
 };
