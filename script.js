@@ -10,8 +10,8 @@ const createTitle = () => {
 const createSection = () => {
   const section = document.createElement('section');
   section.id = 'color-palette';
-  section.style.display = 'flex';
-  section.style.gap = '16px';
+  // section.style.display = 'flex';
+  // section.style.gap = '16px';
   body.appendChild(section);
 };
 
@@ -20,9 +20,6 @@ const createDiv = () => {
     const section = document.getElementById('color-palette');
     const div = document.createElement('div');
     div.className = 'color';
-    div.style.border = 'solid 1px black';
-    div.style.width = '30px';
-    div.style.height = '30px';
     section.appendChild(div);
   }
 };
@@ -82,7 +79,6 @@ const clickBtn = () => {
 const createDivMatriz = () => {
   const divMatriz = document.createElement('div');
   divMatriz.id = 'matriz';
-  divMatriz.style.margin = '20px';
   body.appendChild(divMatriz);
 };
 
@@ -92,16 +88,10 @@ const generateCells = () => {
   for (let index = 0; index < 5; index += 1) {
     const line = document.createElement('div');
     line.id = 'pixel-board';
-    line.style.height = '40px';
 
     for (let index1 = 0; index1 < 5; index1 += 1) {
       const pixel = document.createElement('div');
       pixel.className = 'pixel';
-      pixel.style.border = 'solid 1px black';
-      pixel.style.width = '40px';
-      pixel.style.height = '40px';
-      pixel.style.display = 'inline-block';
-      pixel.style.backgroundColor = 'white';
       line.appendChild(pixel);
     }
     divMatriz.appendChild(line);
