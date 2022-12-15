@@ -79,6 +79,37 @@ const clickBtn = () => {
   button.addEventListener('click', colorDiv);
 };
 
+const createDivMatriz = () => {
+  const divMatriz = document.createElement('div');
+  divMatriz.id = 'pixel-board';
+  divMatriz.style.border = 'solid 1px black';
+  divMatriz.style.width = '210px';
+  divMatriz.style.height = '201px';
+  divMatriz.style.margin = '20px';
+  body.appendChild(divMatriz);
+};
+
+const generateCells = () => {
+  const divMatriz = document.getElementById('pixel-board');
+
+  for (index = 0; index < 5; index +=1) {
+    const line = document.createElement('div');
+    line.className = 'line';
+    line.style.height = '40px';
+
+    for (index1 = 0; index1 < 5; index1 += 1) {
+      const pixel = document.createElement('div');
+      pixel.className = 'pixel';
+      pixel.style.border = 'solid 1px black';
+      pixel.style.width = '40px';
+      pixel.style.height = '40px';
+      pixel.style.display = 'inline-block';
+      line.appendChild(pixel);
+    }
+    divMatriz.appendChild(line);
+  }
+};
+
 window.onload = () => {
   createTitle();
   createSection();
@@ -90,4 +121,6 @@ window.onload = () => {
   }
   randomColorsBtn();
   clickBtn();
+  createDivMatriz();
+  generateCells();
 };
