@@ -81,23 +81,20 @@ const clickBtn = () => {
 
 const createDivMatriz = () => {
   const divMatriz = document.createElement('div');
-  divMatriz.id = 'pixel-board';
-  divMatriz.style.border = 'solid 1px black';
-  divMatriz.style.width = '210px';
-  divMatriz.style.height = '201px';
+  divMatriz.id = 'matriz';
   divMatriz.style.margin = '20px';
   body.appendChild(divMatriz);
 };
 
 const generateCells = () => {
-  const divMatriz = document.getElementById('pixel-board');
+  const divMatriz = document.getElementById('matriz');
 
-  for (index = 0; index < 5; index +=1) {
+  for (let index = 0; index < 5; index += 1) {
     const line = document.createElement('div');
-    line.className = 'line';
+    line.id = 'pixel-board';
     line.style.height = '40px';
 
-    for (index1 = 0; index1 < 5; index1 += 1) {
+    for (let index1 = 0; index1 < 5; index1 += 1) {
       const pixel = document.createElement('div');
       pixel.className = 'pixel';
       pixel.style.border = 'solid 1px black';
