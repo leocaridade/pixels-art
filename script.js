@@ -101,6 +101,7 @@ const generateCells = () => {
       pixel.style.width = '40px';
       pixel.style.height = '40px';
       pixel.style.display = 'inline-block';
+      pixel.style.backgroundColor = 'white';
       line.appendChild(pixel);
     }
     divMatriz.appendChild(line);
