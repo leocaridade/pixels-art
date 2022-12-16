@@ -22,15 +22,23 @@ const createSection = () => {
   section.id = 'color-palette';
   section.addEventListener('click', seila);
   body.appendChild(section);
-  console.log(section);
 };
 
-const changeClass = (event) => {
-  if (event.target.className === 'color') {
-    event.target.className += ' selected';
-  } else {
-    event.target.className = 'color';
+const changeClass = () => {
+  for (let index = 0; index < div.length; index += 1) {
+    if (div[index].className === 'color selected') {
+      div[index].classList.remove('selected');
+    }
+    if (div[index].className === 'color') {
+      div[index].className += ' selected';
+    }
+    div[index].className = '';
   }
+  // if (event.target.classList.contains('selected')) {
+  //   event.target.classList.remove('selected');
+  // } else {
+  //   event.target.classList.add('selected');
+  // }
 };
 
 const createDiv = () => {
@@ -108,8 +116,8 @@ const createClearButton = () => {
   clearBtn.id = 'clear-board';
   clearBtn.innerText = 'Limpar';
   clearBtn.addEventListener('click', () => {
-    localStorage.clear();
-    location.reload();
+    // localStorage.clear();
+    window.location.reload();
   });
   body.appendChild(clearBtn);
 };
@@ -121,7 +129,9 @@ const createDivMatriz = () => {
 };
 
 const paintPixel = (event) => {
-  event.target.style.backgroundColor = selectedColor;
+  const palette = document.querySelector('.selected');
+  const cor = palette.style.backgroundColor;
+  event.target.style.backgroundColor = cor;
 };
 
 const generateCells = () => {

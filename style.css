@@ -17,6 +17,15 @@
   border-radius: 50%;
 }
 
+#clear-board {
+  padding: 10px;
+  background-color: rgb(240, 233, 233);
+  color: rgb(5, 0, 0);
+  font-size: 1.2em;
+  margin: 25px 0 10px 85px;
+  border-radius: 5px;
+}
+
 #matriz {
   margin: 20px;
 }
