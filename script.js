@@ -10,15 +10,24 @@ const createTitle = () => {
   body.appendChild(title);
 };
 
+const seila = () => {
+  // const section = document.getElementById('color-palette');
+  // for (let index = 0; index < section.length; index += 1) {
+  //   // selectedColor = event.target[index].style.backgroundColor;
+  // }
+};
+
 const createSection = () => {
   const section = document.createElement('section');
   section.id = 'color-palette';
+  section.addEventListener('click', seila);
   body.appendChild(section);
+  console.log(section);
 };
 
 const changeClass = (event) => {
   if (event.target.className === 'color') {
-    event.target.className = 'color selected';
+    event.target.className += ' selected';
   } else {
     event.target.className = 'color';
   }
@@ -37,10 +46,12 @@ const createDiv = () => {
     section.appendChild(color);
   }
 };
-// console.log(div);
-// div.addEventListener('click', (event) => {
-//   event.target.className.innerText = 'selected';
-// });
+const colorSelected = () => {
+  const selected = document.querySelector('.selected');
+  selected.style.width = '60px';
+  selected.style.height = '60px';
+  console.log(selected);
+};
 
 const generateColor = () => {
   const r = Math.floor(Math.random() * 255);
@@ -92,6 +103,17 @@ const clickBtn = () => {
   button.addEventListener('click', colorDiv);
 };
 
+const createClearButton = () => {
+  const clearBtn = document.createElement('button');
+  clearBtn.id = 'clear-board';
+  clearBtn.innerText = 'Limpar';
+  clearBtn.addEventListener('click', () => {
+    localStorage.clear();
+    location.reload();
+  });
+  body.appendChild(clearBtn);
+};
+
 const createDivMatriz = () => {
   const divMatriz = document.createElement('div');
   divMatriz.id = 'matriz';
@@ -140,7 +162,8 @@ window.onload = () => {
   }
   randomColorsBtn();
   clickBtn();
+  createClearButton();
   createDivMatriz();
   generateCells();
-  // selectColor();
+  colorSelected();
 };
