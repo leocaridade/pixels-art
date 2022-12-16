@@ -1,4 +1,7 @@
 const body = document.querySelector('body');
+const div = document.getElementsByClassName('color');
+
+let selectedColor = 'black';
 
 const createTitle = () => {
   const title = document.createElement('h1');
@@ -10,19 +13,34 @@ const createTitle = () => {
 const createSection = () => {
   const section = document.createElement('section');
   section.id = 'color-palette';
-  // section.style.display = 'flex';
-  // section.style.gap = '16px';
   body.appendChild(section);
+};
+
+const changeClass = (event) => {
+  if (event.target.className === 'color') {
+    event.target.className = 'color selected';
+  } else {
+    event.target.className = 'color';
+  }
 };
 
 const createDiv = () => {
   for (let index = 0; index < 4; index += 1) {
     const section = document.getElementById('color-palette');
-    const div = document.createElement('div');
-    div.className = 'color';
-    section.appendChild(div);
+    const color = document.createElement('div');
+    if (index === 0) {
+      color.className = 'color selected';
+    } else {
+      color.className = 'color';
+    }
+    color.addEventListener('click', changeClass);
+    section.appendChild(color);
   }
 };
+// console.log(div);
+// div.addEventListener('click', (event) => {
+//   event.target.className.innerText = 'selected';
+// });
 
 const generateColor = () => {
   const r = Math.floor(Math.random() * 255);
@@ -44,7 +62,6 @@ const saveColors = () => {
 };
 
 const colorDiv = () => {
-  const div = document.getElementsByClassName('color');
   for (let index = 0; index < div.length; index += 1) {
     if (index === 0) {
       div[index].style.backgroundColor = 'black';
@@ -56,7 +73,6 @@ const colorDiv = () => {
 };
 
 const colorDivStorage = () => {
-  const div = document.getElementsByClassName('color');
   const getLocalStorage = JSON.parse(localStorage.getItem('colorPalette'));
   for (let index = 0; index < div.length; index += 1) {
     div[index].style.backgroundColor = getLocalStorage[index];
@@ -82,6 +98,10 @@ const createDivMatriz = () => {
   body.appendChild(divMatriz);
 };
 
+const paintPixel = (event) => {
+  event.target.style.backgroundColor = selectedColor;
+};
+
 const generateCells = () => {
   const divMatriz = document.getElementById('matriz');
 
@@ -92,11 +112,22 @@ const generateCells = () => {
     for (let index1 = 0; index1 < 5; index1 += 1) {
       const pixel = document.createElement('div');
       pixel.className = 'pixel';
+      pixel.addEventListener('click', paintPixel);
       line.appendChild(pixel);
     }
     divMatriz.appendChild(line);
   }
 };
+
+// const colorSelected = localStorage.getItem('colorPalette');
+// console.log(colorSelected);
+
+// const selectColor = () => {
+//   const color = document.getElementsByClassName('color');
+//   color.addEventListener('click', () => {
+
+//   });
+// };
 
 window.onload = () => {
   createTitle();
@@ -111,4 +142,5 @@ window.onload = () => {
   clickBtn();
   createDivMatriz();
   generateCells();
+  // selectColor();
 };
