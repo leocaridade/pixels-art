@@ -10,38 +10,23 @@ const createTitle = () => {
   body.appendChild(title);
 };
 
-const seila = () => {
-  // const section = document.getElementById('color-palette');
-  // for (let index = 0; index < section.length; index += 1) {
-  //   // selectedColor = event.target[index].style.backgroundColor;
-  // }
-};
-
 const createSection = () => {
   const section = document.createElement('section');
   section.id = 'color-palette';
-  section.addEventListener('click', seila);
   body.appendChild(section);
 };
 
-const changeClass = () => {
-  for (let index = 0; index < div.length; index += 1) {
-    if (div[index].className === 'color selected') {
-      div[index].classList.remove('selected');
-    }
-    if (div[index].className === 'color') {
-      div[index].className += ' selected';
-    }
-    div[index].className = '';
+const changeClass = (event) => {
+  const color = document.getElementsByClassName('color');
+  for (let index = 0; index < color.length + 1; index += 1) {
+    event.target.classList.add('selected');
+    color[index].classList.remove('selected');
   }
-  // if (event.target.classList.contains('selected')) {
-  //   event.target.classList.remove('selected');
-  // } else {
-  //   event.target.classList.add('selected');
-  // }
+  // console.log(color.length);
 };
 
 const createDiv = () => {
+  // const selected = document.getElementsByClassName('selected');
   for (let index = 0; index < 4; index += 1) {
     const section = document.getElementById('color-palette');
     const color = document.createElement('div');
@@ -53,12 +38,6 @@ const createDiv = () => {
     color.addEventListener('click', changeClass);
     section.appendChild(color);
   }
-};
-const colorSelected = () => {
-  const selected = document.querySelector('.selected');
-  selected.style.width = '60px';
-  selected.style.height = '60px';
-  console.log(selected);
 };
 
 const generateColor = () => {
@@ -175,5 +154,4 @@ window.onload = () => {
   createClearButton();
   createDivMatriz();
   generateCells();
-  colorSelected();
 };
