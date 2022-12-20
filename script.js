@@ -1,7 +1,7 @@
 const body = document.querySelector('body');
 const div = document.getElementsByClassName('color');
-
-let selectedColor = 'black';
+// const color = document.getElementsByClassName('color');
+// let selectedColor = 'black';
 
 const createTitle = () => {
   const title = document.createElement('h1');
@@ -19,10 +19,13 @@ const createSection = () => {
 const changeClass = (event) => {
   const color = document.getElementsByClassName('color');
   for (let index = 0; index < color.length + 1; index += 1) {
-    event.target.classList.add('selected');
-    color[index].classList.remove('selected');
+    const selected = document.querySelector('.selected');
+    if (selected) {
+      selected.classList.remove('selected');
+    }
+    event.target.className = 'color selected';
+    // color[index].classList.remove('selected');
   }
-  // console.log(color.length);
 };
 
 const createDiv = () => {
@@ -30,10 +33,9 @@ const createDiv = () => {
   for (let index = 0; index < 4; index += 1) {
     const section = document.getElementById('color-palette');
     const color = document.createElement('div');
+    color.className = 'color';
     if (index === 0) {
-      color.className = 'color selected';
-    } else {
-      color.className = 'color';
+      color.classList.add('selected');
     }
     color.addEventListener('click', changeClass);
     section.appendChild(color);
@@ -101,6 +103,24 @@ const createClearButton = () => {
   body.appendChild(clearBtn);
 };
 
+const createInput = () => {
+  const input = document.createElement('input');
+  input.id = 'board-size';
+  body.appendChild(input);
+};
+
+const changeMatriz = () => {
+
+};
+
+const createButton = () => {
+  const btn = document.createElement('button');
+  btn.id = 'generate-board';
+  btn.innerText = 'VQV';
+  btn.addEventListener('click', changeMatriz);
+  body.appendChild(btn);
+};
+
 const createDivMatriz = () => {
   const divMatriz = document.createElement('div');
   divMatriz.id = 'matriz';
@@ -113,14 +133,14 @@ const paintPixel = (event) => {
   event.target.style.backgroundColor = cor;
 };
 
-const generateCells = () => {
+const generateCells = (valor) => {
   const divMatriz = document.getElementById('matriz');
 
-  for (let index = 0; index < 5; index += 1) {
+  for (let index = 0; index < valor; index += 1) {
     const line = document.createElement('div');
     line.id = 'pixel-board';
 
-    for (let index1 = 0; index1 < 5; index1 += 1) {
+    for (let index1 = 0; index1 < valor; index1 += 1) {
       const pixel = document.createElement('div');
       pixel.className = 'pixel';
       pixel.addEventListener('click', paintPixel);
@@ -152,6 +172,8 @@ window.onload = () => {
   randomColorsBtn();
   clickBtn();
   createClearButton();
+  createInput();
+  createButton();
   createDivMatriz();
-  generateCells();
+  generateCells(5);
 };
