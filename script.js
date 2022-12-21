@@ -107,9 +107,13 @@ const createClearButton = () => {
 createClearButton();
 
 const createInput = () => {
+  const label = document.createElement('label');
   const input = document.createElement('input');
   input.id = 'board-size';
-  body.appendChild(input);
+  input.type = 'number';
+  label.innerText = 'Quantidade de Pixels';
+  body.appendChild(label);
+  label.appendChild(input);
 };
 createInput();
 
@@ -121,6 +125,7 @@ const createButton = () => {
   const btn = document.createElement('button');
   btn.id = 'generate-board';
   btn.innerText = 'VQV';
+  btn.type = 'submit';
   btn.addEventListener('click', changeMatriz);
   body.appendChild(btn);
 };
