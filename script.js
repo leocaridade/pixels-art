@@ -1,7 +1,5 @@
 const body = document.querySelector('body');
 const div = document.getElementsByClassName('color');
-// const color = document.getElementsByClassName('color');
-// let selectedColor = 'black';
 
 const createTitle = () => {
   const title = document.createElement('h1');
@@ -9,16 +7,18 @@ const createTitle = () => {
   title.innerHTML = 'Paleta de Cores';
   body.appendChild(title);
 };
+createTitle();
 
 const createSection = () => {
   const section = document.createElement('section');
   section.id = 'color-palette';
   body.appendChild(section);
 };
+createSection();
 
 const changeClass = (event) => {
   const color = document.getElementsByClassName('color');
-  for (let index = 0; index < color.length + 1; index += 1) {
+  for (let index = 0; index < color.length; index += 1) {
     const selected = document.querySelector('.selected');
     if (selected) {
       selected.classList.remove('selected');
@@ -29,7 +29,6 @@ const changeClass = (event) => {
 };
 
 const createDiv = () => {
-  // const selected = document.getElementsByClassName('selected');
   for (let index = 0; index < 4; index += 1) {
     const section = document.getElementById('color-palette');
     const color = document.createElement('div');
@@ -41,6 +40,7 @@ const createDiv = () => {
     section.appendChild(color);
   }
 };
+createDiv();
 
 const generateColor = () => {
   const r = Math.floor(Math.random() * 255);
@@ -86,28 +86,32 @@ const randomColorsBtn = () => {
   button.innerHTML = 'Cores aleatórias';
   section.appendChild(button);
 };
+randomColorsBtn();
 
 const clickBtn = () => {
   const button = document.getElementById('button-random-color');
   button.addEventListener('click', colorDiv);
 };
+clickBtn();
 
 const createClearButton = () => {
   const clearBtn = document.createElement('button');
   clearBtn.id = 'clear-board';
   clearBtn.innerText = 'Limpar';
   clearBtn.addEventListener('click', () => {
-    // localStorage.clear();
+    localStorage.clear();
     window.location.reload();
   });
   body.appendChild(clearBtn);
 };
+createClearButton();
 
 const createInput = () => {
   const input = document.createElement('input');
   input.id = 'board-size';
   body.appendChild(input);
 };
+createInput();
 
 const changeMatriz = () => {
 
@@ -120,17 +124,25 @@ const createButton = () => {
   btn.addEventListener('click', changeMatriz);
   body.appendChild(btn);
 };
+createButton();
 
 const createDivMatriz = () => {
   const divMatriz = document.createElement('div');
   divMatriz.id = 'matriz';
   body.appendChild(divMatriz);
 };
+createDivMatriz();
+
+const savePixelBoard = () => {
+  const matriz = document.getElementById('matriz');
+  localStorage.setItem('pixelBoard', matriz.innerHTML);
+};
 
 const paintPixel = (event) => {
   const palette = document.querySelector('.selected');
   const cor = palette.style.backgroundColor;
   event.target.style.backgroundColor = cor;
+  savePixelBoard();
 };
 
 const generateCells = (valor) => {
@@ -143,6 +155,7 @@ const generateCells = (valor) => {
     for (let index1 = 0; index1 < valor; index1 += 1) {
       const pixel = document.createElement('div');
       pixel.className = 'pixel';
+      // pixel.style.backgroundColor = 'white';
       pixel.addEventListener('click', paintPixel);
       line.appendChild(pixel);
     }
@@ -150,30 +163,21 @@ const generateCells = (valor) => {
   }
 };
 
-// const colorSelected = localStorage.getItem('colorPalette');
-// console.log(colorSelected);
-
-// const selectColor = () => {
-//   const color = document.getElementsByClassName('color');
-//   color.addEventListener('click', () => {
-
-//   });
-// };
+const reloadMap = () => {
+  const matriz = document.getElementById('matriz');
+  matriz.innerHTML = localStorage.getItem('pixelBoard');
+};
 
 window.onload = () => {
-  createTitle();
-  createSection();
-  createDiv();
   if (localStorage.getItem('colorPalette') === null) {
     colorDiv();
   } else {
     colorDivStorage();
   }
-  randomColorsBtn();
-  clickBtn();
-  createClearButton();
-  createInput();
-  createButton();
-  createDivMatriz();
-  generateCells(5);
+
+  if (localStorage.getItem('pixelBoard') === null) {
+    generateCells(5);
+  } else {
+    reloadMap();
+  }
 };
