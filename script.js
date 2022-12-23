@@ -118,7 +118,8 @@ const createInput = () => {
 createInput();
 
 const changeMatriz = () => {
-
+  const input = document.getElementById('board-size');
+  // generateCells(input.value);
 };
 
 const createButton = () => {
@@ -171,18 +172,23 @@ const generateCells = (valor) => {
 const reloadMap = () => {
   const matriz = document.getElementById('matriz');
   matriz.innerHTML = localStorage.getItem('pixelBoard');
+
+  const pixels = document.getElementsByClassName('pixel');
+  for (let index = 0; index < pixels.length; index += 1) {
+    pixels[index].addEventListener('click', paintPixel);
+  }
 };
 
 window.onload = () => {
-  if (localStorage.getItem('colorPalette') === null) {
-    colorDiv();
-  } else {
+  if (localStorage.getItem('colorPalette')) {
     colorDivStorage();
+  } else {
+    colorDiv();
   }
 
-  if (localStorage.getItem('pixelBoard') === null) {
-    generateCells(5);
-  } else {
+  if (localStorage.getItem('pixelBoard')) {
     reloadMap();
+  } else {
+    generateCells(5);
   }
 };
