@@ -28,7 +28,7 @@ const changeClass = (event) => {
   }
 };
 
-const createDiv = () => {
+const createPalette = () => {
   for (let index = 0; index < 4; index += 1) {
     const section = document.getElementById('color-palette');
     const color = document.createElement('div');
@@ -40,7 +40,7 @@ const createDiv = () => {
     section.appendChild(color);
   }
 };
-createDiv();
+createPalette();
 
 const generateColor = () => {
   const r = Math.floor(Math.random() * 255);
@@ -106,29 +106,44 @@ const createClearButton = () => {
 };
 createClearButton();
 
+const createDiv = () => {
+  const pixelsQuantity = document.createElement('section');
+  pixelsQuantity.id = 'form';
+  body.appendChild(pixelsQuantity);
+};
+createDiv();
+
 const createInput = () => {
+  const pixelsQuantity = document.getElementById('form');
   const label = document.createElement('label');
   const input = document.createElement('input');
   input.id = 'board-size';
   input.type = 'number';
   label.innerText = 'Quantidade de Pixels';
-  body.appendChild(label);
+  input.min = '1';
+  input.max = '50';
+  pixelsQuantity.appendChild(label);
   label.appendChild(input);
 };
 createInput();
 
 const changeMatriz = () => {
-  const input = document.getElementById('board-size');
-  // generateCells(input.value);
+  const matriz = document.getElementById('board-size').value;
+  if (matriz === '') {
+    alert('Board inválido!');
+  } else {
+    generateCells(matriz);
+  }
 };
 
 const createButton = () => {
+  const pixelsQuantity = document.getElementById('form');
   const btn = document.createElement('button');
   btn.id = 'generate-board';
   btn.innerText = 'VQV';
   btn.type = 'submit';
   btn.addEventListener('click', changeMatriz);
-  body.appendChild(btn);
+  pixelsQuantity.appendChild(btn);
 };
 createButton();
 
