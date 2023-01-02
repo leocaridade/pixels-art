@@ -128,11 +128,13 @@ const createInput = () => {
 createInput();
 
 const changeMatriz = () => {
-  const matriz = document.getElementById('board-size').value;
-  if (matriz === '') {
+  const matriz = document.getElementById('matriz');
+  const input = document.getElementById('board-size').value;
+  if (input === '') {
     alert('Board inválido!');
   } else {
-    generateCells(matriz);
+    matriz.innerHTML = '';
+    generateCells(input);
   }
 };
 
