@@ -132,6 +132,12 @@ const changeMatriz = () => {
   const input = document.getElementById('board-size').value;
   if (input === '') {
     alert('Board inválido!');
+  } else if (input < 5) {
+    matriz.innerHTML = '';
+    generateCells(5);
+  } else if (input > 50) {
+    matriz.innerHTML = '';
+    generateCells(50);
   } else {
     matriz.innerHTML = '';
     generateCells(input);
