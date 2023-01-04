@@ -119,9 +119,10 @@ const createInput = () => {
   const input = document.createElement('input');
   input.id = 'board-size';
   input.type = 'number';
-  label.innerText = 'Quantidade de Pixels';
+  label.innerText = 'Pixels: (n X n)';
   input.min = '1';
   input.max = '50';
+  input.placeholder = 'n';
   pixelsQuantity.appendChild(label);
   label.appendChild(input);
 };

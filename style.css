@@ -1,6 +1,42 @@
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  text-align: center;
+  background-color: rgb(157, 248, 218);
+}
+
+#title {
+  text-align: center;
+}
+
 #color-palette {
   display: flex;
+  margin: auto;
+  width: 324px;
   gap: 16px;
+}
+
+#button-random-color {
+  /* padding: 10px; */
+  border-radius: 10px;
+  
+}
+
+#clear-board {
+  padding: 10px;
+  background-color: rgb(240, 233, 233);
+  color: rgb(0, 5, 1);
+  font-size: 1.2em;
+  margin: 25px 0 10px 0;
+  border-radius: 25px;
+}
+
+#clear-board:hover {
+  background-color: rgb(10, 184, 10);
+  color: white;
+}
+
+#board-size {
+  margin-left: 10px;
 }
 
 .color {
@@ -15,15 +51,6 @@
   width: 35px;
   height: 35px;
   border-radius: 50%;
-}
-
-#clear-board {
-  padding: 10px;
-  background-color: rgb(240, 233, 233);
-  color: rgb(5, 0, 0);
-  font-size: 1.2em;
-  margin: 25px 0 10px 85px;
-  border-radius: 5px;
 }
 
 #matriz {
