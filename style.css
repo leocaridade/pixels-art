@@ -16,9 +16,7 @@ body {
 }
 
 #button-random-color {
-  /* padding: 10px; */
   border-radius: 10px;
-  
 }
 
 #clear-board {
@@ -26,7 +24,7 @@ body {
   background-color: rgb(240, 233, 233);
   color: rgb(0, 5, 1);
   font-size: 1.2em;
-  margin: 25px 0 10px 0;
+  margin: 25px 0 10px;
   border-radius: 25px;
 }
 
